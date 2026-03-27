@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Country + Space Explorer</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- Leaflet for ISS map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <h1>&#127758; Country + Space Explorer</h1>
+    <p class="subtitle">Search countries &amp; track the ISS in real time</p>
+  </header>
+
+  <!-- ── Nav tabs ── -->
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="countries">Countries</button>
+    <button class="tab-btn"        data-tab="iss">ISS Tracker</button>
+    <button class="tab-btn"        data-tab="favorites">Favorites</button>
+  </nav>
+
+  <main>
+
+    <!-- ══ Countries Tab ══ -->
+    <section id="tab-countries" class="tab-content active">
+      <div class="search-bar">
+        <input id="countryInput" type="text" placeholder="Enter country name (e.g. Japan)" />
+        <button id="searchBtn">Search</button>
+      </div>
+      <div id="countryError" class="error-msg hidden"></div>
+
+      <div id="countryCard" class="card hidden">
+        <div class="card-header">
+          <img id="flagImg" src="" alt="Flag" />
+          <div>
+            <h2 id="countryName"></h2>
+            <p id="officialName" class="muted"></p>
+          </div>
+        </div>
+        <div class="card-grid">
+          <div class="info-item"><span class="label">Capital</span><span id="capital"></span></div>
+          <div class="info-item"><span class="label">Population</span><span id="population"></span></div>
+          <div class="info-item"><span class="label">Region</span><span id="region"></span></div>
+          <div class="info-item"><span class="label">Subregion</span><span id="subregion"></span></div>
+          <div class="info-item"><span class="label">Area</span><span id="area"></span></div>
+          <div class="info-item"><span class="label">Languages</span><span id="languages"></span></div>
+          <div class="info-item"><span class="label">Currencies</span><span id="currencies"></span></div>
+          <div class="info-item"><span class="label">Timezones</span><span id="timezones"></span></div>
+        </div>
+        <button id="saveBtn" class="save-btn">&#9733; Save to Favorites</button>
+        <div id="saveMsg" class="save-msg hidden"></div>
+      </div>
+    </section>
+
+    <!-- ══ ISS Tracker Tab ══ -->
+    <section id="tab-iss" class="tab-content">
+      <div class="iss-info">
+        <h2>&#128752; ISS Live Location</h2>
+        <div class="iss-coords">
+          <div class="coord-box"><span class="label">Latitude</span><span id="issLat">--</span></div>
+          <div class="coord-box"><span class="label">Longitude</span><span id="issLon">--</span></div>
+          <div class="coord-box"><span class="label">Last Updated</span><span id="issTime">--</span></div>
+        </div>
+        <button id="refreshIss">Refresh Now</button>
+      </div>
+      <div id="issMap"></div>
+    </section>
+
+    <!-- ══ Favorites Tab ══ -->
+    <section id="tab-favorites" class="tab-content">
+      <h2>&#9733; Saved Countries</h2>
+      <div id="favoritesError" class="error-msg hidden"></div>
+      <div id="favoritesList" class="favorites-grid"></div>
+      <p id="noFavs" class="muted center">No favorites saved yet.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Data: <a href="https://restcountries.com" target="_blank">REST Countries</a> &amp;
+       <a href="http://open-notify.org" target="_blank">Open Notify ISS</a></p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
